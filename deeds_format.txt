@@ -1,0 +1,42 @@
+The format for "deeds.txt" is as follows:
+- NO extra spaces
+- Properties are separated by empty lines (NO SPACES)
+
+FOR PROPERTIES:
+
+[Name]
+[Color code] [# members in set] [Price]
+[Rent] [Monopoly rent] [1 house rent] [2 houses] [3 houses] [4 houses] [1 hotel rent] [House cost] [Hotel cost] [Mortgaged value]
+________________________________________________________________________________________________________________________________________________
+
+FOR RAILROADS:
+
+*[Name]
+RR 4 [Price]
+[1 RR rent] [2 RR] [3 RR] [4 RR] [Mortgaged value]
+________________________________________________________________________________________________________________________________________________
+
+FOR UTILTIES:
+
+#[Name]
+UT 2 [Price]
+[Multiplier] [Monopoly multiplier] [Mortgaged value]
+
+
+
+************************************************************************************************************************************************
+************************************************************************************************************************************************
+
+Color codes:
+BR = brown
+LB = light blue
+PK = pink
+OR = orange
+RD = red
+YW = yellow
+GR = green
+DB = dark blue
+
+UT = utility
+RR = railroad
+
