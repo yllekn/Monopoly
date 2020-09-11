@@ -8,7 +8,7 @@
 #include "player.hpp"
 
 int StartSequence(std::string * const player_names);
+void LoadProperties(std::vector<Property> &deeds, std::vector<PropertyType> &property_types);
 void InitBoard(int num_players, Player * players);
-void LoadProperties(std::vector<Property> &deeds);
 
 #endif

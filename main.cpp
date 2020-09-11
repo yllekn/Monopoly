@@ -20,8 +20,16 @@ int main () {
 
     // [[B]] Load property deeds into a vector "deeds"
     std::vector<Property> deeds;
-    LoadProperties(deeds);
-    deeds[0].PrintDeed();
+    std::vector<PropertyType> property_types;
+    LoadProperties(deeds, property_types);
+    for (PropertyType pt : property_types) {
+        pt.Print(deeds);
+    }
 
-    // [[C]] 
+    for (Property d : deeds) {
+        d.PrintDeedAbbrev();
+    }
+
+    // [[C]] Initialize player data
+    // for ()
 }

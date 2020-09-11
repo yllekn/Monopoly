@@ -1,4 +1,9 @@
 The format for "deeds.txt" is as follows:
+- the top 10 lines lists:
+    * the two-letter codes for all color sets, followed by utilities, then railroads (order is important)
+    * their full names (make sure full names do not have spaces, e.g. 'light-blue' instead of 'light blue')
+    * the indices of their members (from 1 - 28)
+
 - NO extra spaces
 - Properties are separated by empty lines (NO SPACES)
 

@@ -6,7 +6,7 @@
 
 #include "player.hpp"
 #include "board.hpp"
-#define NUM_PROPERTIES 28
+#include "constants.hpp"
 
 // FUNCTION StartSequence(): Get # of players, players' names, and confirm info.
 int StartSequence(std::string * const player_names) {
@@ -56,12 +56,37 @@ int StartSequence(std::string * const player_names) {
     return 2;
 }
 
-void LoadProperties(std::vector<Property> &deeds) {
+void LoadProperties(std::vector<Property> &deeds, std::vector<PropertyType> &property_types) {
+    std::string tmp;
+    int types_found = 0;
+    std::ifstream deeds_file("deeds.txt");
+    
+    // Create the 10 property types (colors, utilities, railroads)
+    while (types_found < 10) {
+        if (std::getline(deeds_file, tmp) && tmp.empty()) continue;     // If line is empty, keep reading
+        std::istringstream iss(tmp);
+        std::string abbrev;
+        std::string name;
+        int num_members;
+        int idx;
+        std::vector<int> indices;
+        iss >> abbrev >> name >> num_members;
+        for (int i = 0; i < num_members; i++) {
+            iss >> idx;
+            indices.push_back(idx);
+        }
+        PropertyType type(abbrev, name, num_members, indices);   // Pass color code, full name, and property indices to constructor
+        property_types.push_back(type);
+        types_found++;
+    }
+
+    // Read in the 28 properties
     std::string name;
     std::string info;
     std::string rents;
-    std::ifstream deeds_file("deeds.txt");
     for (int i = 0; i < NUM_PROPERTIES; i++) {
+        // 0) Ignore property index line
+        while (std::getline(deeds_file, tmp) && tmp.empty()) continue;  // Skip the first non-empty line (property index)
         // 1) Read in property name
         while (std::getline(deeds_file, name)) {
             if (!name.empty()) break;  // Ignore empty lines

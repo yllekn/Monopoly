@@ -1,4 +1,5 @@
 *.o
 *.jpg
 deeds_BACKUP.txt
+PROJECT_GUIDE.txt
 test.cpp

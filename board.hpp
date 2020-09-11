@@ -5,6 +5,10 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <vector>
+#include <array>
+
+#include "constants.hpp"
 
 class Property {
     public:
@@ -22,8 +26,12 @@ class Property {
             std::cout << "With 1 hotel: $" << rent_hotel << std::endl << std::endl;
 
             std::cout << "Cost per house: $" << house_cost << std::endl;
-            std::cout << "Cost for hotel: $" << hotel_cost << " & 4 houses" <<  std::endl;
+            std::cout << "Cost for hotel: $" << hotel_cost << " & 4 houses" << std::endl;
             std::cout << "Mortgaged value: $" << mortgage_value << std::endl << std::endl;
+        }
+
+        void PrintDeedAbbrev() {
+            std::cout << "- " << name << ", " << color << std::endl;
         }
 
         // Constructor
@@ -69,6 +77,38 @@ class Property {
         int num_houses;
         int num_hotels;
         ///int rent?
+};
+
+struct PropertyType {
+    public: 
+        void Print(std::vector<Property> &vec) {
+            std::cout << abbrev << " " << name << " Members: " << std::endl;
+            for (int i = 0; i < num_members; i++) {
+                std::cout << "(" << indices[i] << ") ";
+                vec[indices[i]].PrintDeedAbbrev();
+            }
+            std::cout << std::endl;
+        }
+
+        // CONSTRUCTOR
+        PropertyType (std::string abbrev_name, std::string full_name, int num_of_members, std::vector<int> &idx) {
+            abbrev = abbrev_name;
+            name = full_name;
+            num_members = num_of_members;
+            for (int i = 0; i < MAX_SET_SIZE; i++) {
+                if (i < num_members) {
+                    indices[i] = idx[i] - 1;    // Have to subtract 1 b/c of offset (in deeds.txt, they are enumerated 1-28)
+                }
+                else {
+                    indices[i] = -1;
+                }
+            }
+        }
+    private:
+        std::string abbrev;
+        std::string name;
+        int num_members;
+        std::array <int, MAX_SET_SIZE> indices;     // Convention: -1 if N/A
 };
 
 // TODO: print function for board, user info (e.g how much money)
